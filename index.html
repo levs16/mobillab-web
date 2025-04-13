@@ -7,6 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="MobilLab - профессиональный ремонт iPhone, iPad, MacBook и Apple Watch. Быстро, качественно, с гарантией на все работы!">
+    <meta name="keywords" content="ремонт apple, ремонт iphone, ремонт ipad, ремонт macbook, ремонт apple watch">
+    <meta property="og:title" content="MobilLab - Профессиональный ремонт Apple техники">
+    <meta property="og:description" content="Профессиональный ремонт iPhone, iPad, MacBook и Apple Watch. Быстро, качественно, с гарантией!">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root {
             --primary-color: #0f172a;
@@ -50,6 +56,103 @@
             padding: 0;
             line-height: 1.6;
             transition: background-color 0.5s ease, color 0.5s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        .loader::before,
+        .loader::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: spinner-animation 2s ease-in-out infinite;
+            opacity: 0.6;
+            filter: blur(5px);
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+        
+        .loader::after {
+            animation-delay: -1s;
+            filter: blur(10px);
+            background: linear-gradient(315deg, var(--accent-color), var(--secondary-color));
+            opacity: 0.4;
+        }
+        
+        @keyframes spinner-animation {
+            0%, 100% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.4;
+            }
+        }
+        
+        .loader-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+            position: relative;
+        }
+        
+        .loader-logo::before {
+            content: '';
+            position: absolute;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 0.375rem;
+            left: -0.5rem;
+            z-index: -1;
+            transform: rotate(10deg);
+            filter: blur(8px);
+            opacity: 0.7;
+        }
+        
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
         
         .container {
@@ -96,6 +199,7 @@
             position: relative;
             display: flex;
             align-items: center;
+            z-index: 1002;
         }
 
         .logo::before {
@@ -160,6 +264,69 @@
         
         nav ul li a:hover::after {
             width: 100%;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            z-index: 1002;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) {
+            top: 5px;
+        }
+        
+        .hamburger span:nth-child(2), .hamburger span:nth-child(3) {
+            top: 11px;
+        }
+        
+        .hamburger span:nth-child(4) {
+            top: 17px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            top: 11px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        
+        .hamburger.active span:nth-child(4) {
+            top: 11px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        .dark-mode .hamburger span {
+            background: var(--primary-color);
         }
         
         /* Hero Section */
@@ -579,6 +746,7 @@
             bottom: 0;
             display: flex;
             overflow: hidden;
+            cursor: col-resize;
         }
         
         .before, .after {
@@ -588,7 +756,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
         .before {
@@ -596,11 +764,88 @@
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
             z-index: 2;
             position: relative;
-            cursor: ew-resize;
         }
         
         .dark-mode .before {
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        }
+        
+        .before img, .after img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-out;
+        }
+        
+        /* Zoom effect based on cursor position */
+        .before-after.hovered-left .before img {
+            transform: scale(1.1);
+        }
+        
+        .before-after.hovered-right .after img {
+            transform: scale(1.1);
+        }
+        
+        /* Drag handle for mobile */
+        .drag-handle {
+            display: none; /* Hide completely */
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .before-after {
+                cursor: pointer;
+            }
+            
+            /* Fix ratio for mobile */
+            .before {
+                flex: 0.5 !important; /* Force 50/50 split on mobile */
+            }
+            
+            .after {
+                flex: 0.5 !important; /* Force 50/50 split on mobile */
+            }
+            
+            /* Make the status labels more visible on mobile */
+            .status-label {
+                padding: 0.25rem 0.75rem;
+                font-size: 0.75rem;
+            }
+            
+            /* Add tap indication */
+            .before-after::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                height: 40px;
+                margin-top: -20px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+                z-index: 30;
+            }
+            
+            .before-after.tapped::after {
+                opacity: 1;
+                animation: pulse 1s ease-out;
+            }
+            
+            @keyframes pulse {
+                0% { transform: scale(1); opacity: 0.7; }
+                70% { transform: scale(1.1); opacity: 0.3; }
+                100% { transform: scale(1); opacity: 0; }
+            }
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .drag-handle {
+                display: none;
+            }
         }
         
         .before::before {
@@ -611,32 +856,13 @@
             width: 20px;
             height: 100%;
             z-index: 20;
-            cursor: ew-resize;
         }
         
         .example-card:hover .before {
-            flex: 0.3;
             filter: grayscale(0.5) brightness(0.7);
         }
         
         .example-card:hover .after {
-            flex: 1.7;
-        }
-        
-        .before img, .after img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        
-        .example-card:hover .before img {
-            transform: scale(1.1) rotate(-3deg);
-            filter: blur(1px);
-        }
-        
-        .example-card:hover .after img {
-            transform: scale(1.1);
             filter: contrast(1.1) saturate(1.2);
         }
         
@@ -1321,6 +1547,49 @@
             transform: rotate(0);
         }
         
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dark-mode .back-to-top {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+        
+        .back-to-top svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            color: var(--primary-color);
+        }
+        
         /* Animation Classes */
         @keyframes fadeInUp {
             from {
@@ -1446,12 +1715,70 @@
             }
             
             .header-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                align-items: center;
             }
             
-            nav ul {
-                gap: 1.5rem;
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--card-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1001;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                opacity: 0;
+                pointer-events: none; /* Disable interactions when hidden */
+            }
+            
+            .dark-mode .nav-menu {
+                background: rgba(15, 23, 42, 0.95);
+                box-shadow: none;
+            }
+            
+            .nav-menu.active {
+                top: 0;
+                opacity: 1;
+                pointer-events: all; /* Re-enable interactions when visible */
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            
+            .nav-menu li {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                transition-delay: calc(var(--item-index) * 0.1s);
+            }
+            
+            .nav-menu.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .nav-menu li a {
+                font-size: 1.75rem;
+                font-weight: 600;
+                padding: 0.75rem 2rem;
+                display: inline-block;
+            }
+            
+            .overlay {
+                display: none;
             }
             
             .services-grid {
@@ -1471,6 +1798,15 @@
             .footer-logo, .footer-links, .footer-social {
                 justify-content: center;
             }
+            
+            .contact-card {
+                padding: 3rem 2rem;
+                max-width: 100%;
+            }
+            
+            .social-links {
+                gap: 2rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1488,22 +1824,94 @@
             
             .contact-card {
                 padding: 2.5rem 1.5rem;
+                border-radius: 0.75rem;
             }
             
-            .theme-toggle {
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .social-link {
+                width: 4rem;
+                height: 4rem;
+            }
+            
+            theme-toggle {
                 bottom: 1.5rem;
                 right: 1.5rem;
                 width: 3rem;
                 height: 3rem;
             }
+            
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem 1.5rem;
+            }
+            
+            .hero {
+                padding: 9rem 0 6rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .contact {
+                padding: 6rem 0;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-card {
+                padding: 2rem 1rem;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            
+            nav ul {
+                gap: 0.75rem 1.25rem;
+            }
+            
+            .services-grid, .examples-grid {
+                gap: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.75rem;
+                font-size: 0.9375rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="page-loader">
+        <div class="loader-logo">MobilLab</div>
+        <div class="loader"></div>
+    </div>
+    
     <header>
         <div class="container header-content">
             <a href="#" class="logo">MobilLab</a>
-            <nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu">
                 <ul>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#examples">До/После</a></li>
@@ -1516,7 +1924,7 @@
     
     <section class="hero">
         <div class="container">
-            <h1>Превосходный ремонт<br>Apple техники</h1>
+            <h1>Ремонт<br>техники Apple</h1>
             <p>Профессиональный и быстрый ремонт с гарантией на все виды работ</p>
             <a href="#contact" class="btn">Связаться с нами</a>
         </div>
@@ -1770,7 +2178,20 @@
         </svg>
     </div>
     
+    <div class="back-to-top" aria-label="Вернуться наверх">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+    
     <script>
+        // Page loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.page-loader').classList.add('hidden');
+            }, 800);
+        });
+        
         // Properly apply dark mode on page load
         function applyTheme() {
             if (localStorage.getItem('darkMode') === 'true') {
@@ -1800,6 +2221,72 @@
             window.scrollTo(0, 0);
         };
         
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        const navItems = document.querySelectorAll('.nav-menu li');
+        
+        // Set animation index for nav items
+        navItems.forEach((item, index) => {
+            item.style.setProperty('--item-index', index);
+        });
+        
+        // Toggle mobile menu
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Prevent body scrolling when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        
+        // Close menu when link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Shrink header on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.style.padding = '0.75rem 0';
+                header.style.boxShadow = '0 10px 30px -10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1.25rem 0';
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                let target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    let headerOffset = 100;
+                    let elementPosition = target.getBoundingClientRect().top;
+                    let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
         // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1808,12 +2295,17 @@
                 }
             });
         }, {
-            threshold: 0.1
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
         });
         
-        // Observe all sections
+        // Observe all sections and cards
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
+        });
+        
+        document.querySelectorAll('.service-card, .example-card, .about-principles li, .contact-card').forEach(element => {
+            observer.observe(element);
         });
         
         // Dark mode toggle
@@ -1823,6 +2315,24 @@
             document.body.classList.toggle('dark-mode');
             // Save user preference
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
         
         // Add animation classes
@@ -1893,6 +2403,41 @@
                 /* Smooth scrolling */
                 html {
                     scroll-behavior: smooth;
+                    scroll-padding-top: 100px;
+                }
+                
+                /* Reveal animations on scroll */
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes fadeInLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+                
+                @keyframes fadeInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
                 }
             `;
             document.head.appendChild(style);
@@ -1910,75 +2455,6 @@
                 item.style.setProperty('--animation-order', index);
             });
             
-            // Add interactive slider to example cards
-            document.querySelectorAll('.before-after').forEach(container => {
-                const before = container.querySelector('.before');
-                const after = container.querySelector('.after');
-                
-                let isDragging = false;
-                let initialX;
-                let initialWidth;
-                
-                // Make divider/line draggable
-                before.addEventListener('mousedown', (e) => {
-                    isDragging = true;
-                    container.classList.add('dragging');
-                    initialX = e.clientX;
-                    initialWidth = before.getBoundingClientRect().width;
-                    document.body.style.cursor = 'ew-resize';
-                    e.preventDefault();
-                });
-                
-                document.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
-                    
-                    const containerRect = container.getBoundingClientRect();
-                    const containerWidth = containerRect.width;
-                    const newWidth = initialWidth + (e.clientX - initialX);
-                    const flexRatio = Math.max(0.1, Math.min(0.9, newWidth / containerWidth));
-                    
-                    before.style.flex = flexRatio;
-                    after.style.flex = (1 - flexRatio);
-                });
-                
-                document.addEventListener('mouseup', () => {
-                    if (isDragging) {
-                        isDragging = false;
-                        container.classList.remove('dragging');
-                        document.body.style.cursor = '';
-                    }
-                });
-                
-                // Touch support
-                before.addEventListener('touchstart', (e) => {
-                    isDragging = true;
-                    container.classList.add('dragging');
-                    initialX = e.touches[0].clientX;
-                    initialWidth = before.getBoundingClientRect().width;
-                    e.preventDefault();
-                });
-                
-                document.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    
-                    const touch = e.touches[0];
-                    const containerRect = container.getBoundingClientRect();
-                    const containerWidth = containerRect.width;
-                    const newWidth = initialWidth + (touch.clientX - initialX);
-                    const flexRatio = Math.max(0.1, Math.min(0.9, newWidth / containerWidth));
-                    
-                    before.style.flex = flexRatio;
-                    after.style.flex = (1 - flexRatio);
-                });
-                
-                document.addEventListener('touchend', () => {
-                    if (isDragging) {
-                        isDragging = false;
-                        container.classList.remove('dragging');
-                    }
-                });
-            });
-            
             // Add parallax effect to hero section blobs
             window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
@@ -1992,6 +2468,80 @@
                         hero.style.setProperty('--blob-transform', `translateY(${scrollPercent * 50}px)`);
                     }
                 }
+            });
+        });
+        
+        // Add interactive before-after comparison
+        document.querySelectorAll('.before-after').forEach(container => {
+            const before = container.querySelector('.before');
+            const after = container.querySelector('.after');
+            
+            // Set initial position (center)
+            function setInitialPosition() {
+                before.style.flex = '0.5';
+                after.style.flex = '0.5';
+            }
+            
+            // Initialize at center
+            setInitialPosition();
+            
+            // Mobile-specific interaction
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                // Toggle between before (0.9) and after (0.9) views on tap
+                let showingBefore = true;
+                
+                container.addEventListener('click', () => {
+                    if (showingBefore) {
+                        before.style.flex = '0.1';
+                        after.style.flex = '0.9';
+                    } else {
+                        before.style.flex = '0.9';
+                        after.style.flex = '0.1';
+                    }
+                    
+                    // Add tap indicator animation
+                    container.classList.add('tapped');
+                    setTimeout(() => {
+                        container.classList.remove('tapped');
+                    }, 1000);
+                    
+                    showingBefore = !showingBefore;
+                });
+                
+                return; // Exit early for mobile
+            }
+            
+            // Update comparison ratio based on X position (desktop only)
+            function updateComparison(clientX) {
+                const rect = container.getBoundingClientRect();
+                const percentage = (clientX - rect.left) / rect.width;
+                const ratio = Math.max(0.05, Math.min(0.95, percentage));
+                
+                before.style.flex = ratio;
+                after.style.flex = 1 - ratio;
+            }
+            
+            // Move divider with cursor (desktop only)
+            container.addEventListener('mousemove', (e) => {
+                updateComparison(e.clientX);
+                
+                // Apply zoom effect
+                const rect = container.getBoundingClientRect();
+                const center = rect.left + rect.width / 2;
+                
+                if (e.clientX < center) {
+                    container.classList.add('hovered-left');
+                    container.classList.remove('hovered-right');
+                } else {
+                    container.classList.add('hovered-right');
+                    container.classList.remove('hovered-left');
+                }
+            });
+            
+            // Reset when mouse leaves (desktop only)
+            container.addEventListener('mouseleave', () => {
+                setInitialPosition();
+                container.classList.remove('hovered-left', 'hovered-right');
             });
         });
     </script>
