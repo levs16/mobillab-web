@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobilLab - Профессиональный ремонт Apple техники</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000;
+            --secondary-color: #0071e3;
+            --text-color: #1d1d1f;
+            --bg-light: #fbfbfd;
+            --bg-dark: #000;
+            --card-bg: #fff;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 40px;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: #fff;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-dark);
+            color: #fff;
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #0062d0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #fff;
+        }
+        
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--primary-color);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background-color: var(--bg-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-color);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 20px;
+            color: #6e6e73;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), #36c5f0);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card h3 {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .service-card p {
+            color: #6e6e73;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Examples Section */
+        .examples {
+            padding: 120px 0;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .examples .section-title,
+        .examples .section-subtitle {
+            color: #fff;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .example-card {
+            background-color: #1d1d1f;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .example-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .example-image {
+            position: relative;
+            padding-bottom: 70%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .example-label {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            z-index: 10;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .before-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+        }
+        
+        .before, .after {
+            flex: 1;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .before img, .after img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .example-card:hover .before img, 
+        .example-card:hover .after img {
+            transform: scale(1.05);
+        }
+        
+        .status-label {
+            position: absolute;
+            top: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .before .status-label {
+            left: 20px;
+            background-color: #FF3B30;
+        }
+        
+        .after .status-label {
+            right: 20px;
+            background-color: #34C759;
+        }
+        
+        .example-description {
+            padding: 30px;
+        }
+        
+        .example-description h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        
+        .example-description p {
+            color: #a1a1a6;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .example-description p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .example-description strong {
+            color: var(--secondary-color);
+        }
+        
+        .cta-block {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px;
+            background-color: #1d1d1f;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cta-text {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: #fff;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background-color: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(54, 197, 240, 0.1) 100%);
+            top: -400px;
+            right: -400px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #6e6e73;
+            line-height: 1.8;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 30px 0 20px;
+            color: var(--text-color);
+        }
+        
+        .about-principles {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .about-principles li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .principle-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .principle-text {
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image-container {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .about-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .about-image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background-color: #fff;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            background-color: var(--bg-light);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), #36c5f0);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .contact-card h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .contact-card p {
+            color: #6e6e73;
+            margin-bottom: 10px;
+        }
+        
+        .contact-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: var(--bg-light);
+            position: relative;
+        }
+        
+        .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .map-placeholder:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .map-placeholder h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: #6e6e73;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.2) 0%, rgba(54, 197, 240, 0.2) 100%);
+            filter: blur(50px);
+            opacity: 0.5;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-logo .logo {
+            height: 40px;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-social {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-bottom p {
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 40px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+            
+            .about-image-container {
+                padding-bottom: 60%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-logo, .footer-links, .footer-social {
+                margin-bottom: 20px;
+            }
+            
+            .footer-links {
+                order: 2;
+            }
+            
+            .footer-social {
+                order: 3;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .section-subtitle {
+                font-size: 16px;
+            }
+            
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .services-grid, .examples-grid, .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links a {
+                margin: 0 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="logo.jpg" alt="MobilLab Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#examples">До/После</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Превосходный ремонт<br>Apple техники</h1>
+            <p>Профессиональный и быстрый ремонт с гарантией на все виды работ</p>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="section-subtitle">Решаем любые проблемы с вашими Apple-устройствами быстро и качественно</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Ремонт iPhone</h3>
+                    <p>Замена экрана, батареи, задней крышки, камеры. Восстановление после падения и попадания влаги. Диагностика любых неисправностей.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ремонт iPad</h3>
+                    <p>Замена дисплея, touch ID, аккумулятора, разъема зарядки. Ремонт после падения и механических повреждений.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ремонт MacBook</h3>
+                    <p>Замена клавиатуры, дисплея, батареи, ремонт материнской платы, решение проблем с перегревом и работой системы.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ремонт Apple Watch</h3>
+                    <p>Замена стекла, дисплея, батареи, диагностика и устранение неисправностей в работе.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Обновление ПО</h3>
+                    <p>Восстановление системы, обновление iOS, разблокировка Apple ID, установка приложений.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Выезд мастера</h3>
+                    <p>Выполним ремонт у вас дома или в офисе. Консультация и диагностика при выезде мастера бесплатно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="examples" class="examples">
+        <div class="container">
+            <h2 class="section-title">До и После ремонта</h2>
+            <p class="section-subtitle">Наша работа говорит сама за себя</p>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-image">
+                        <div class="example-label">iPhone 13 Pro</div>
+                        <div class="before-after">
+                            <div class="before">
+                                <div class="status-label">ДО</div>
+                                <img src="img/13pro-before.jpg" alt="iPhone с пятнами на камере">
+                            </div>
+                            <div class="after">
+                                <div class="status-label">ПОСЛЕ</div>
+                                <img src="img/13pro-after.jpg" alt="iPhone с чистой камерой">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-description">
+                        <h3>Восстановление камеры iPhone</h3>
+                        <p>Удаление пятен с камеры iPhone 13 Pro с помощью специальной жидкости и ультразвуковой ванны. Полная замена корпуса на новый.</p>
+                        <p><strong>Гарантия на все работы!</strong></p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-image">
+                        <div class="example-label">iPad Pro 12.9 (2018)</div>
+                        <div class="before-after">
+                            <div class="before">
+                                <div class="status-label">ДО</div>
+                                <img src="img/ipad-before.jpg" alt="iPad с разбитым экраном">
+                            </div>
+                            <div class="after">
+                                <div class="status-label">ПОСЛЕ</div>
+                                <img src="img/ipad-after.jpg" alt="iPad с новым экраном">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-description">
+                        <h3>Замена стекла iPad Pro</h3>
+                        <p>Полная замена разбитого дисплея iPad Pro 12.9 (2018) и восстановление деформированного корпуса до состояния нового.</p>
+                        <p><strong>Быстро, качественно, доступно!</strong></p>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-image">
+                        <div class="example-label">iPhone</div>
+                        <div class="before-after">
+                            <div class="before">
+                                <div class="status-label">ДО</div>
+                                <img src="img/13pro-before.jpg" alt="iPhone с неисправностями">
+                            </div>
+                            <div class="after">
+                                <div class="status-label">ПОСЛЕ</div>
+                                <img src="img/13pro-after.jpg" alt="Отремонтированный iPhone">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-description">
+                        <h3>Комплексный ремонт iPhone</h3>
+                        <p>Восстановление работоспособности устройства, замена компонентов и корпусных деталей с использованием оригинальных запчастей.</p>
+                        <p><strong>Только оригинальные запчасти!</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-block">
+                <p class="cta-text">Больше примеров наших работ можно увидеть в нашем Telegram-канале</p>
+                <a href="https://t.me/MobilLab1" class="btn">Посмотреть в Telegram</a>
+                <p style="margin-top: 20px; font-style: italic; color: #a1a1a6;">Не миритесь с дефектами — доверьтесь профессионалам!</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>О нас</h2>
+                    <p>MobilLab — это профессиональный сервисный центр по ремонту техники Apple. Наша команда состоит из опытных мастеров, которые специализируются на ремонте iPhone, iPad, MacBook и Apple Watch любой сложности.</p>
+                    <p>Мы используем только оригинальные и качественные запчасти, работаем на профессиональном оборудовании и предоставляем гарантию на все выполненные работы.</p>
+                    <h3>Основные принципы нашей работы:</h3>
+                    <ul class="about-principles">
+                        <li>
+                            <span class="principle-icon">✓</span>
+                            <span class="principle-text">Высокое качество ремонта</span>
+                        </li>
+                        <li>
+                            <span class="principle-icon">✓</span>
+                            <span class="principle-text">Доступные цены</span>
+                        </li>
+                        <li>
+                            <span class="principle-icon">✓</span>
+                            <span class="principle-text">Оперативность выполнения работ</span>
+                        </li>
+                        <li>
+                            <span class="principle-icon">✓</span>
+                            <span class="principle-text">Гарантия на все услуги</span>
+                        </li>
+                        <li>
+                            <span class="principle-icon">✓</span>
+                            <span class="principle-text">Индивидуальный подход к каждому клиенту</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-container">
+                        <img src="img/13pro-after.jpg" alt="MobilLab сервисный центр">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-subtitle">Свяжитесь с нами любым удобным способом</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <h3>Наш адрес</h3>
+                    <p>г. Москва, ул. Примерная, д. 123</p>
+                    <p>Ежедневно: 10:00 - 20:00</p>
+                    <p>Без выходных</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <h3>Связаться с нами</h3>
+                    <p><strong>Телефон:</strong> +7 (999) 123-45-67</p>
+                    <p><strong>Email:</strong> info@mobillab.ru</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.2v-2a4 4 0 0 1 4-4h12.8M7 21.9l-4-4 4-4"/><path d="M21 11.8v2a4 4 0 0 1-4 4H4.2"/></svg>
+                    </div>
+                    <h3>Мы в соцсетях</h3>
+                    <p><strong>Telegram:</strong> <a href="https://t.me/MobilLab1">@MobilLab1</a></p>
+                    <p><strong>Avito:</strong> <a href="https://www.avito.ru/user/931d4f67d114eda9712c52e1a675ff77/profile?src=sharing">Наш профиль на Avito</a></p>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <h3>Мы на карте</h3>
+                    <p>Нажмите, чтобы открыть карту</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.jpg" alt="MobilLab Logo" class="logo">
+                </div>
+                <div class="footer-links">
+                    <a href="#services">Услуги</a>
+                    <a href="#examples">До/После</a>
+                    <a href="#about">О нас</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://t.me/MobilLab1" class="social-icon" aria-label="Telegram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.55 6.62a2.73 2.73 0 0 0-.96.8 1.23 1.23 0 0 0 .176 1.273c.26.345.677.594 1.155.678l3.87.7-1.35 5.45c-.12.475.013.972.33 1.213.318.245.852.223 1.227-.06l3.87-2.93 5.096 3.93c.344.232.747.35 1.15.35a2.35 2.35 0 0 0 1.046-.257c.446-.254.768-.682.888-1.17l4.17-16.51c.18-.667-.02-1.37-.5-1.84a2.13 2.13 0 0 0-1.57-.617z"></path></svg>
+                    </a>
+                    <a href="https://www.avito.ru/user/931d4f67d114eda9712c52e1a675ff77/profile?src=sharing" class="social-icon" aria-label="Avito">A</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MobilLab — Сервисный центр по ремонту Apple техники. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
