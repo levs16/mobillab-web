@@ -6,7 +6,7 @@
     <title>MobilLab - Профессиональный ремонт Apple техники</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #000;
@@ -26,7 +26,7 @@
         }
         
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-color);
             line-height: 1.6;
@@ -61,10 +61,14 @@
         }
         
         .logo {
-            height: 40px;
-            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
-        
+
         .logo:hover {
             opacity: 0.8;
         }
@@ -522,7 +526,7 @@
         
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             margin-bottom: 60px;
         }
@@ -534,30 +538,11 @@
             text-align: center;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--secondary-color), #36c5f0);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
         }
         
         .contact-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact-card:hover::before {
-            transform: scaleX(1);
         }
         
         .contact-icon {
@@ -592,39 +577,6 @@
         
         .contact-card a:hover {
             text-decoration: underline;
-        }
-        
-        .map-container {
-            height: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            background-color: var(--bg-light);
-            position: relative;
-        }
-        
-        .map-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .map-placeholder:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        .map-placeholder h3 {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 10px;
         }
         
         /* Footer */
@@ -665,7 +617,12 @@
         }
         
         .footer-logo .logo {
-            height: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
         
         .footer-links {
@@ -811,7 +768,7 @@
 <body>
     <header>
         <div class="container header-content">
-            <img src="logo.jpg" alt="MobilLab Logo" class="logo">
+            <a href="#" class="logo">MobilLab</a>
             <nav>
                 <ul>
                     <li><a href="#services">Услуги</a></li>
@@ -989,15 +946,6 @@
             <div class="contact-info">
                 <div class="contact-card">
                     <div class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    </div>
-                    <h3>Наш адрес</h3>
-                    <p>г. Москва, ул. Примерная, д. 123</p>
-                    <p>Ежедневно: 10:00 - 20:00</p>
-                    <p>Без выходных</p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     </div>
                     <h3>Связаться с нами</h3>
@@ -1010,14 +958,15 @@
                     </div>
                     <h3>Мы в соцсетях</h3>
                     <p><strong>Telegram:</strong> <a href="https://t.me/MobilLab1">@MobilLab1</a></p>
-                    <p><strong>Avito:</strong> <a href="https://www.avito.ru/user/931d4f67d114eda9712c52e1a675ff77/profile?src=sharing">Наш профиль на Avito</a></p>
+                    <p><strong>Avito:</strong> <a href="#">Наш профиль на Avito</a></p>
                 </div>
-            </div>
-            
-            <div class="map-container">
-                <div class="map-placeholder">
-                    <h3>Мы на карте</h3>
-                    <p>Нажмите, чтобы открыть карту</p>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>График работы</h3>
+                    <p>Ежедневно: 10:00 - 20:00</p>
+                    <p>Без выходных</p>
                 </div>
             </div>
         </div>
@@ -1027,7 +976,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo.jpg" alt="MobilLab Logo" class="logo">
+                    <a href="#" class="logo">MobilLab</a>
                 </div>
                 <div class="footer-links">
                     <a href="#services">Услуги</a>
@@ -1039,11 +988,11 @@
                     <a href="https://t.me/MobilLab1" class="social-icon" aria-label="Telegram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.55 6.62a2.73 2.73 0 0 0-.96.8 1.23 1.23 0 0 0 .176 1.273c.26.345.677.594 1.155.678l3.87.7-1.35 5.45c-.12.475.013.972.33 1.213.318.245.852.223 1.227-.06l3.87-2.93 5.096 3.93c.344.232.747.35 1.15.35a2.35 2.35 0 0 0 1.046-.257c.446-.254.768-.682.888-1.17l4.17-16.51c.18-.667-.02-1.37-.5-1.84a2.13 2.13 0 0 0-1.57-.617z"></path></svg>
                     </a>
-                    <a href="https://www.avito.ru/user/931d4f67d114eda9712c52e1a675ff77/profile?src=sharing" class="social-icon" aria-label="Avito">A</a>
+                    <a href="#" class="social-icon" aria-label="Avito">A</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 MobilLab — Сервисный центр по ремонту Apple техники. Все права защищены.</p>
+                <p>&copy; 2025 MobilLab — Сервисный центр по ремонту Apple техники. Все права защищены.</p>
             </div>
         </div>
     </footer>
